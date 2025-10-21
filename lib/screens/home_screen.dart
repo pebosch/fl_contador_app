@@ -11,6 +11,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int contador = 0;
 
+  void incrementar() {
+    contador++;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -33,26 +38,42 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            FloatingActionButton(
-              //child: const Icon ( Icons.add ),
-              child: const Text('-1'),
-              onPressed: () => setState(() => contador--)
-            ),
-            FloatingActionButton(
-              //child: const Icon ( Icons.add ),
-              child: const Text('RESET'),
-              onPressed: () => setState(() => contador=0)
-            ),
-            FloatingActionButton(
-              //child: const Icon ( Icons.add ),
-              child: const Text('+1'),
-              onPressed: () => setState(() => contador++)
-            ),
-          ],
+        floatingActionButton: CustomFloatingActionButton(
+          incrementarFn: incrementar,
         ),
+    );
+  }
+}
+
+class CustomFloatingActionButton extends StatelessWidget {
+
+  final Function incrementarFn;
+
+  const CustomFloatingActionButton({
+    super.key, required this.incrementarFn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        FloatingActionButton(
+          //child: const Icon ( Icons.add ),
+          child: const Text('-1'),
+          onPressed: null
+        ),
+        FloatingActionButton(
+          //child: const Icon ( Icons.add ),
+          child: const Text('RESET'),
+          onPressed: null
+        ),
+        FloatingActionButton(
+          //child: const Icon ( Icons.add ),
+          child: const Text('+1'),
+          onPressed: () => incrementarFn()
+        ),
+      ],
     );
   }
 }
