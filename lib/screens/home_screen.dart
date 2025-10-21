@@ -16,6 +16,16 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {});
   }
 
+  void decrementar() {
+    contador--;
+    setState(() {});
+  }
+
+    void reset() {
+    contador=0;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -40,6 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: CustomFloatingActionButton(
           incrementarFn: incrementar,
+          decrementarFn: decrementar,
+          resetFn: reset,
         ),
     );
   }
@@ -48,9 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
 class CustomFloatingActionButton extends StatelessWidget {
 
   final Function incrementarFn;
+  final Function decrementarFn;
+  final Function resetFn;
 
   const CustomFloatingActionButton({
-    super.key, required this.incrementarFn,
+    super.key, required this.incrementarFn, required this.decrementarFn, required this.resetFn,
   });
 
   @override
@@ -59,17 +73,14 @@ class CustomFloatingActionButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         FloatingActionButton(
-          //child: const Icon ( Icons.add ),
           child: const Text('-1'),
-          onPressed: null
+          onPressed: () => decrementarFn()
         ),
         FloatingActionButton(
-          //child: const Icon ( Icons.add ),
           child: const Text('RESET'),
-          onPressed: null
+          onPressed: () => resetFn()
         ),
         FloatingActionButton(
-          //child: const Icon ( Icons.add ),
           child: const Text('+1'),
           onPressed: () => incrementarFn()
         ),
