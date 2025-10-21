@@ -32,18 +32,22 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           )
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton(
-          //child: const Icon ( Icons.add ),
-          child: const Text('Añadir'),
-          onPressed: (){
-              print('Se ha registrado una pulsación');
-              contador++;
-              setState(() {
-                
-              });
-              print('$contador');
-          },
+        //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Row(
+          children: [
+            FloatingActionButton(
+              //child: const Icon ( Icons.add ),
+              child: const Text('Añadir'),
+              onPressed: (){
+                  print('Se ha registrado una pulsación');
+                  contador++;
+                  setState(() {
+                    
+                  });
+                  print('$contador');
+              },
+            ),
+          ],
         ),
     );
   }
